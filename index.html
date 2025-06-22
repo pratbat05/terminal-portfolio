@@ -4,452 +4,144 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terminal Portfolio</title>
-    
-</head>
-<body>
-    <div class="terminal-window">
-        <div class="terminal-header">
-            <div class="terminal-buttons">
-                <div class="terminal-button close"></div>
-                <div class="terminal-button minimize"></div>
-                <div class="terminal-button maximize"></div>
-            </div>
-            <div class="terminal-title">portfolio — bash — 80×24</div>
-        </div>
-        
-        <div class="terminal-body">
-            <div class="terminal-content">
-                <div class="history" id="history">
-                    <div class="welcome-message">
-                        <div class="ascii-art">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Orbitron:wght@700&display=swap');
 
-                        </div>
-                        <div class="success">Welcome to pratfolio!</div>
-                        <div class="output">Type <span class="highlight">'help'</span> to see available commands.</div>
-                        <div class="output">Version 2.1.0 </div>
-                    </div>
-                </div>
-                
-                <div class="input-line">
-                    <span class="prompt-symbol">➜</span>
-                    <span class="user-info">guest@portfolio</span>
-                    <span class="path">~</span>
-                    <span class="prompt-symbol">$</span>
-                    <input type="text" class="terminal-input" id="commandInput" autocomplete="off" spellcheck="false">
-                    <span class="cursor"></span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const portfolioData = {
-            projects: [
-                {
-                    title: "E-Commerce Platform",
-                    subtitle: "Full-Stack Web Application | 2024",
-                    description: "Modern, responsive e-commerce platform with real-time inventory management, secure payment processing, and admin dashboard. Built for scalability and performance.",
-                    tags: ["React", "Node.js", "MongoDB", "Stripe", "Socket.io"],
-                    details: "Features user authentication, shopping cart, payment processing, and real-time notifications. Increased client sales by 150%."
-                },
-                {
-                    title: "AI-Powered Task Manager",
-                    subtitle: "Machine Learning Application | 2024",
-                    description: "Intelligent task management app using ML algorithms to prioritize tasks and optimize productivity based on user behavior patterns.",
-                    tags: ["Python", "TensorFlow", "React", "Flask", "PostgreSQL"],
-                    details: "Uses natural language processing and predictive analytics. Users reported 40% improvement in task completion rates."
-                },
-                {
-                    title: "Digital Art Marketplace",
-                    subtitle: "Blockchain/Web3 Application | 2023",
-                    description: "Decentralized NFT marketplace for digital artists with integrated wallet functionality and smart contract-based royalty distribution.",
-                    tags: ["React", "Solidity", "Web3.js", "IPFS", "MetaMask"],
-                    details: "Facilitated over $100K in NFT sales within the first month. Gas-optimized smart contracts."
-                },
-                {
-                    title: "Sustainable Living App",
-                    subtitle: "Mobile Application | 2023",
-                    description: "Gamified mobile app promoting environmental consciousness through daily challenges, carbon footprint tracking, and community features.",
-                    tags: ["React Native", "Firebase", "Node.js", "Google Maps API"],
-                    details: "50,000+ downloads with 4.8-star rating. Integrates with local businesses and environmental APIs."
-                }
-            ],
-            achievements: [
-                {
-                    title: "Tech Innovation Award 2024",
-                    subtitle: "Industry Recognition | TechCorp Global",
-                    description: "Recognized for outstanding contribution to open-source projects and innovative solutions in web development. Award highlights community impact and technical excellence.",
-                    tags: ["Open Source", "Innovation", "Community"],
-                    details: "My OSS projects have 50,000+ downloads and contribute to developer productivity worldwide."
-                },
-                {
-                    title: "Hackathon Winner - TechCrunch Disrupt",
-                    subtitle: "First Place | 2024",
-                    description: "Won first place among 200+ teams for developing AccessiCheck - an AI-powered web accessibility analyzer that helps companies improve digital inclusion.",
-                    tags: ["AI/ML", "Accessibility", "Innovation", "Leadership"],
-                    details: "Project now adopted by 50+ companies. Led team of 4 developers in 48-hour challenge."
-                },
-                {
-                    title: "Open Source Contributor",
-                    subtitle: "GitHub | 2022-Present",
-                    description: "Active contributor to major open-source projects including React ecosystem tools, accessibility libraries, and developer productivity tools.",
-                    tags: ["React", "JavaScript", "TypeScript", "Community"],
-                    details: "500+ contributions, 15+ repositories maintained, mentoring new contributors."
-                },
-                {
-                    title: "Tech Speaker & Mentor",
-                    subtitle: "Conference Speaker | 2023-2024",
-                    description: "Keynote speaker at 5+ tech conferences on topics including accessible design, modern web development, and diversity in tech.",
-                    tags: ["Public Speaking", "Mentorship", "Accessibility"],
-                    details: "Reached 2000+ developers, mentored 25+ junior developers in career growth."
-                }
-            ],
-            education: [
-                {
-                    title: "Master of Science in Computer Science",
-                    subtitle: "Stanford University | 2021-2023",
-                    description: "Specialized in Machine Learning and Human-Computer Interaction with focus on accessible design principles and AI ethics.",
-                    tags: ["ML", "HCI", "Accessibility", "AI Ethics"],
-                    details: "GPA: 3.8/4.0. Thesis: 'Improving Web Accessibility Through AI-Powered Design Recommendations'"
-                },
-                {
-                    title: "Bachelor of Science in Software Engineering",
-                    subtitle: "University of California, Berkeley | 2017-2021",
-                    description: "Comprehensive program covering software development, algorithms, data structures, and system design with emphasis on practical applications.",
-                    tags: ["Software Engineering", "Algorithms", "System Design"],
-                    details: "Magna Cum Laude, GPA: 3.7/4.0. Senior project won Best Innovation Award."
-                },
-                {
-                    title: "Full-Stack Development Bootcamp",
-                    subtitle: "General Assembly | 2020",
-                    description: "Intensive 12-week program covering modern web development technologies and best practices in agile development environments.",
-                    tags: ["Web Development", "JavaScript", "React", "Node.js"],
-                    details: "Top 5% of cohort. Built 3 full-stack applications including team collaboration platform."
-                },
-                {
-                    title: "Certified Accessibility Professional",
-                    subtitle: "International Association of Accessibility Professionals | 2023",
-                    description: "Professional certification in web accessibility standards (WCAG), testing methodologies, and inclusive design principles.",
-                    tags: ["Accessibility", "WCAG", "Inclusive Design"],
-                    details: "Comprehensive certification covering legal requirements, testing tools, and remediation strategies."
-                }
-            ],
-            hobbies: [
-                {
-                    title: "Digital Art & Design",
-                    subtitle: "Creative Expression | 2019-Present",
-                    description: "Creating digital illustrations, UI/UX mockups, and generative art using tools like Procreate, Figma, and p5.js. Love exploring the intersection of code and creativity.",
-                    tags: ["Digital Art", "Procreate", "Figma", "p5.js"],
-                    details: "Published artwork on Behance with 10k+ views. Created custom illustrations for 5+ clients."
-                },
-                {
-                    title: "Rock Climbing & Bouldering",
-                    subtitle: "Outdoor Adventure | 2020-Present",
-                    description: "Passionate about indoor and outdoor climbing. Love the problem-solving aspect and the mental/physical challenge. Regular at local climbing gym and weekend outdoor trips.",
-                    tags: ["Rock Climbing", "Bouldering", "Outdoor", "Fitness"],
-                    details: "Climbing grade: V6 bouldering, 5.11a sport climbing. Climbed in 8 different states."
-                },
-                {
-                    title: "Coffee Enthusiast & Roasting",
-                    subtitle: "Caffeine Science | 2018-Present",
-                    description: "Home coffee roasting and brewing experiments. Love exploring different origins, roast profiles, and brewing methods. Currently perfecting pour-over techniques.",
-                    tags: ["Coffee", "Roasting", "Chemistry", "Experimentation"],
-                    details: "Roasted 50+ different coffee origins. Built temperature monitoring system for roasting consistency."
-                },
-                {
-                    title: "Tech Blogging & Content Creation",
-                    subtitle: "Knowledge Sharing | 2022-Present",
-                    description: "Writing technical articles about web development, accessibility, and emerging technologies. Creating video tutorials and hosting live coding sessions.",
-                    tags: ["Blogging", "Tutorial Creation", "Live Coding"],
-                    details: "Published 25+ articles with 100k+ total views. YouTube channel with 5k+ subscribers."
-                },
-                {
-                    title: "Urban Gardening & Sustainability",
-                    subtitle: "Green Living | 2021-Present",
-                    description: "Maintaining a small urban garden with herbs, vegetables, and succulents. Interested in sustainable living practices and reducing environmental impact.",
-                    tags: ["Gardening", "Sustainability", "Environment"],
-                    details: "Growing 15+ varieties of plants. Composting and water conservation practices implemented."
-                }
-            ]
-        };
-
-        const commands = {
-            help: () => `
-<span class="section-header">Available Commands:</span>
-<div class="help-command"><span class="highlight">help</span>                 - Show this help message</div>
-<div class="help-command"><span class="highlight">about</span>                - Learn about me</div>
-<div class="help-command"><span class="highlight">projects</span>             - View my development projects</div>
-<div class="help-command"><span class="highlight">achievements</span>         - See my accomplishments and awards</div>
-<div class="help-command"><span class="highlight">education</span>            - Check my educational background</div>
-<div class="help-command"><span class="highlight">hobbies</span>              - Discover my interests and hobbies</div>
-<div class="help-command"><span class="highlight">skills</span>               - List my technical skills</div>
-<div class="help-command"><span class="highlight">contact</span>              - Get my contact information</div>
-<div class="help-command"><span class="highlight">clear</span>                - Clear the terminal</div>
-<div class="help-command"><span class="highlight">whoami</span>               - Current user info</div>
-<div class="help-command"><span class="highlight">pwd</span>                  - Print working directory</div>
-
-<span class="warning">Tip:</span> Commands are case-insensitive. Try typing any command above!
-            `,
-            
-            about: () => `
-<span class="section-header">About Me</span>
-
-Hey there! I'm a passionate <span class="highlight">Full-Stack Developer</span> and <span class="highlight">UI/UX Designer</span> 
-who loves creating beautiful, accessible, and functional digital experiences.
-
-<span class="success">Current Focus:</span>
-• Building scalable web applications with modern technologies
-• Advocating for digital accessibility and inclusive design
-• Contributing to open-source projects and mentoring developers
-• Exploring the intersection of AI/ML and user experience
-
-<span class="success">What drives me:</span>
-I believe technology should be accessible to everyone and that great design 
-can solve real-world problems. When I'm not coding, you'll find me rock 
-climbing, experimenting with coffee roasting, or creating digital art.
-
-<span class="success">Philosophy:</span>
-"Code is poetry, design is empathy, and accessibility is a human right." ✨
-            `,
-            
-            projects: () => {
-                let output = '<span class="section-header">Development Projects</span>\n\n';
-                portfolioData.projects.forEach((project, index) => {
-                    output += `<div class="item">
-<span class="item-title">${index + 1}. ${project.title}</span>
-<div class="item-subtitle">${project.subtitle}</div>
-<div class="item-description">${project.description}</div>
-<div class="tags">${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>
-<div class="item-description"><span class="success">Details:</span> ${project.details}</div>
-</div>`;
-                });
-                return output;
-            },
-            
-            achievements: () => {
-                let output = '<span class="section-header">Achievements & Recognition</span>\n\n';
-                portfolioData.achievements.forEach((achievement, index) => {
-                    output += `<div class="item">
-<span class="item-title">${index + 1}. ${achievement.title}</span>
-<div class="item-subtitle">${achievement.subtitle}</div>
-<div class="item-description">${achievement.description}</div>
-<div class="tags">${achievement.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>
-<div class="item-description"><span class="success">Impact:</span> ${achievement.details}</div>
-</div>`;
-                });
-                return output;
-            },
-            
-            education: () => {
-                let output = '<span class="section-header">Educational Background</span>\n\n';
-                portfolioData.education.forEach((edu, index) => {
-                    output += `<div class="item">
-<span class="item-title">${index + 1}. ${edu.title}</span>
-<div class="item-subtitle">${edu.subtitle}</div>
-<div class="item-description">${edu.description}</div>
-<div class="tags">${edu.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>
-<div class="item-description"><span class="success">Note:</span> ${edu.details}</div>
-</div>`;
-                });
-                return output;
-            },
-            
-            hobbies: () => {
-                let output = '<span class="section-header">Hobbies & Interests</span>\n\n';
-                portfolioData.hobbies.forEach((hobby, index) => {
-                    output += `<div class="item">
-<span class="item-title">${index + 1}. ${hobby.title}</span>
-<div class="item-subtitle">${hobby.subtitle}</div>
-<div class="item-description">${hobby.description}</div>
-<div class="tags">${hobby.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>
-<div class="item-description"><span class="success">Highlights:</span> ${hobby.details}</div>
-</div>`;
-                });
-                return output;
-            },
-            
-            skills: () => `
-<span class="section-header">Technical Skills</span>
-
-<span class="highlight">Frontend Development:</span>
-JavaScript, TypeScript, React, Vue.js, HTML5, CSS3, Sass, Tailwind CSS, 
-Next.js, Gatsby, Web Components, Progressive Web Apps
-
-<span class="highlight">Backend Development:</span>
-Node.js, Python, Express.js, Flask, Django, REST APIs, GraphQL, 
-Microservices, Serverless Architecture
-
-<span class="highlight">Database & Storage:</span>
-MongoDB, PostgreSQL, MySQL, Redis, Firebase, AWS S3, IndexedDB
-
-<span class="highlight">DevOps & Tools:</span>
-Git, Docker, AWS, Google Cloud, CI/CD, Jest, Cypress, Webpack, 
-Vite, ESLint, Prettier
-
-<span class="highlight">Design & Accessibility:</span>
-Figma, Adobe XD, Sketch, WCAG 2.1, ARIA, Screen Readers, 
-Color Contrast Analysis, Usability Testing
-
-<span class="highlight">Emerging Technologies:</span>
-Machine Learning (TensorFlow, PyTorch), Web3/Blockchain, 
-AI/ML APIs, WebAssembly, WebRTC
-            `,
-            
-            contact: () => `
-<span class="section-header">Contact Information</span>
-
-<span class="success">📧 Email:</span>         your.email@example.com
-<span class="success">💼 LinkedIn:</span>      linkedin.com/in/yourprofile
-<span class="success">🐙 GitHub:</span>        github.com/yourusername
-<span class="success">🌐 Website:</span>       yourwebsite.com
-<span class="success">🐦 Twitter:</span>       @yourhandle
-<span class="success">📝 Blog:</span>          yourblog.dev
-
-<span class="highlight">Preferred Contact:</span> Email for professional inquiries, 
-LinkedIn for networking, and GitHub for project collaboration.
-
-<span class="warning">Status:</span> Currently open to new opportunities and interesting projects! ✨
-            `,
-            
-            clear: () => 'CLEAR',
-            
-            whoami: () => `<span class="success">guest</span>`,
-            
-            pwd: () => `<span class="success">/Users/guest/portfolio</span>`,
-            
-            ls: () => `
-<span class="highlight">projects/</span>     <span class="highlight">achievements/</span>     <span class="highlight">education/</span>     <span class="highlight">hobbies/</span>
-skills.txt    about.txt       contact.txt    README.md
-            `,
-            
-            date: () => new Date().toString(),
-            
-            echo: (args) => args.join(' ')
-        };
-
-        const input = document.getElementById('commandInput');
-        const history = document.getElementById('history');
-        let commandHistory = [];
-        let historyIndex = -1;
-
-        function executeCommand(commandLine) {
-            const parts = commandLine.trim().split(' ');
-            const command = parts[0].toLowerCase();
-            const args = parts.slice(1);
-            
-            // Add command to history
-            addToHistory(`<span class="prompt-symbol">➜</span> <span class="user-info">guest@portfolio</span> <span class="path">~</span> <span class="prompt-symbol">$</span> <span class="command">${commandLine}</span>`);
-            
-            if (commands[command]) {
-                const result = commands[command](args);
-                if (result === 'CLEAR') {
-                    history.innerHTML = '';
-                    return;
-                }
-                addToHistory(`<div class="output">${result}</div>`);
-            } else if (command === '') {
-                // Empty command, just add a new prompt
-            } else {
-                addToHistory(`<div class="error">Command not found: ${command}</div><div class="output">Type <span class="highlight">'help'</span> to see available commands.</div>`);
-            }
-            
-            commandHistory.push(commandLine);
-            historyIndex = commandHistory.length;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        function addToHistory(content) {
-            const div = document.createElement('div');
-            div.innerHTML = content;
-            history.appendChild(div);
-            history.scrollTop = history.scrollHeight;
+        body {
+            font-family: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+            background: linear-gradient(135deg, #f8bbf4 0%, #a259f7 100%);
+            color: #fff0fa;
+            height: 100vh;
+            overflow: hidden;
         }
 
-        function simulateTyping(text, callback) {
-            let i = 0;
-            const typingDiv = document.createElement('div');
-            typingDiv.className = 'typing-indicator';
-            typingDiv.textContent = 'Typing...';
-            history.appendChild(typingDiv);
-            
-            const typeInterval = setInterval(() => {
-                if (i < text.length) {
-                    typingDiv.textContent = text.slice(0, i + 1) + '▋';
-                    i++;
-                } else {
-                    clearInterval(typeInterval);
-                    history.removeChild(typingDiv);
-                    if (callback) callback();
-                }
-            }, 50);
+        .terminal-window {
+            background: rgba(54, 18, 74, 0.93);
+            border-radius: 18px;
+            box-shadow: 0 18px 48px 0 #c586c0a3, 0 1.5px 0 #ff4bcd;
+            margin: 20px;
+            height: calc(100vh - 40px);
+            display: flex;
+            flex-direction: column;
+            border: 2.5px solid #ff4bcd;
+            position: relative;
+            z-index: 1;
         }
 
-        input.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') {
-                const command = input.value;
-                input.value = '';
-                executeCommand(command);
-            } else if (e.key === 'ArrowUp') {
-                e.preventDefault();
-                if (historyIndex > 0) {
-                    historyIndex--;
-                    input.value = commandHistory[historyIndex];
-                }
-            } else if (e.key === 'ArrowDown') {
-                e.preventDefault();
-                if (historyIndex < commandHistory.length - 1) {
-                    historyIndex++;
-                    input.value = commandHistory[historyIndex];
-                } else {
-                    historyIndex = commandHistory.length;
-                    input.value = '';
-                }
-            } else if (e.key === 'Tab') {
-                e.preventDefault();
-                const currentValue = input.value.toLowerCase();
-                const matchingCommands = Object.keys(commands).filter(cmd => 
-                    cmd.startsWith(currentValue)
-                );
-                if (matchingCommands.length === 1) {
-                    input.value = matchingCommands[0];
-                }
-            }
-        });
+        .terminal-header {
+            background: linear-gradient(90deg, #ff4bcd 0%, #a259f7 100%);
+            padding: 14px 20px;
+            border-radius: 18px 18px 0 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid #f8bbf4;
+            box-shadow: 0 2px 8px #e1bfff40;
+        }
 
-        // Auto-focus input
-        input.focus();
-        
-        // Keep input focused
-        document.addEventListener('click', () => {
-            input.focus();
-        });
+        .terminal-buttons {
+            display: flex;
+            gap: 10px;
+        }
 
-        // Terminal window controls
-        document.querySelector('.close').addEventListener('click', () => {
-            document.body.style.opacity = '0';
-            setTimeout(() => {
-                alert('Thanks for visiting my portfolio! 👋');
-                location.reload();
-            }, 300);
-        });
+        .terminal-button {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 0 8px #fff2;
+        }
 
-        document.querySelector('.minimize').addEventListener('click', () => {
-            document.querySelector('.terminal-window').style.transform = 'scale(0.1)';
-            setTimeout(() => {
-                document.querySelector('.terminal-window').style.transform = 'scale(1)';
-            }, 1000);
-        });
+        .close { background: #ff4bcd; }
+        .minimize { background: #e1bfff; }
+        .maximize { background: #f8bbf4; }
 
-        document.querySelector('.maximize').addEventListener('click', () => {
-            const terminal = document.querySelector('.terminal-window');
-            if (terminal.style.margin === '0px') {
-                terminal.style.margin = '20px';
-                terminal.style.height = 'calc(100vh - 40px)';
-            } else {
-                terminal.style.margin = '0px';
-                terminal.style.height = '100vh';
-                terminal.querySelector('.terminal-header').style.borderRadius = '0';
-            }
-        });
-    </script>
-</body>
-</html>
+        .terminal-button:hover {
+            transform: scale(1.15) rotate(-5deg);
+            filter: brightness(1.3) drop-shadow(0 0 4px #fff4);
+        }
+
+        .terminal-title {
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 16px;
+            color: #fff0fa;
+            font-family: 'Orbitron', 'JetBrains Mono', monospace;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .terminal-body {
+            flex: 1;
+            padding: 26px;
+            background: linear-gradient(115deg, #a259f7 0%, #f8bbf4 100%);
+            overflow-y: auto;
+            position: relative;
+            border-radius: 0 0 18px 18px;
+        }
+
+        .terminal-content {
+            font-size: 15px;
+            line-height: 1.7;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .prompt {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .prompt-symbol {
+            color: #ff4bcd;
+            margin-right: 8px;
+            font-weight: 700;
+            text-shadow: 0 0 4px #fff8, 0 0 8px #a259f7b0;
+            letter-spacing: 1px;
+        }
+
+        .user-info {
+            color: #6dd3fe;
+            margin-right: 4px;
+            font-weight: 600;
+        }
+
+        .path {
+            color: #e1bfff;
+            margin-right: 8px;
+            font-weight: 500;
+        }
+
+        .input-line {
+            display: flex;
+            align-items: center;
+            margin: 18px 0;
+        }
+
+        .terminal-input {
+            background: transparent;
+            border: none;
+            color: #fff0fa;
+            font-family: inherit;
+            font-size: 15px;
+            outline: none;
+            flex: 1;
+            margin-left: 8px;
+            letter-spacing: 1px;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 18px;
+            background: #ff4bcd;
+            border-radius: 2px;
+           *
+
