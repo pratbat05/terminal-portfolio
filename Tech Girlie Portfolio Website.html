@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Girlie Terminal Portfolio ✨</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 25%, #fecfef 75%, #c471ed 100%);
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Cute floating elements */
+        .floating-decoration {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .bow {
+            font-size: 2rem;
+            color: #ff69b4;
+            filter: drop-shadow(0 0 10px rgba(255, 105, 180, 0.5));
+        }
+
+        .sparkle {
+            font-size: 1.5rem;
+            color: #da70d6;
+            filter: drop-shadow(0 0 8px rgba(218, 112, 214, 0.7));
+        }
+
+        .heart {
+            font-size: 1.8rem;
+            color: #ff1493;
+            filter: drop-shadow(0 0 12px rgba(255, 20, 147, 0.6));
+        }
+
+        .floating-decoration:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+        .floating-decoration:nth-child(2) { top: 20%; right: 10%; animation-delay: 2s; }
+        .floating-decoration:nth-child(3) { bottom: 30%; left: 15%; animation-delay: 4s; }
+        .floating-decoration:nth-child(4) { top: 60%; right: 20%; animation-delay: 1s; }
+        .floating-decoration:nth-child(5) { bottom: 20%; right: 5%; animation-delay: 3s; }
+        .floating-decoration:nth-child(6) { top: 40%; left: 10%; animation-delay: 5s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.7; }
+            50% { transform: translateY(-20px) rotate(10deg); opacity: 1; }
+        }
+
+        .terminal-window {
+            background: linear-gradient(145deg, #fce4ec, #f8bbd9);
+            border-radius: 15px;
+            box-shadow: 0 25px 50px rgba(255, 105, 180, 0.3), 
+                        0 0 0 1px rgba(255, 182, 193, 0.5),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            margin: 20px;
+            height: calc(100vh - 40px);
+            display: flex;
+            flex-direction: column;
+            border: 2px solid #ff69b4;
+            position: relative;
+            z-index: 10;
+        }
+
+        .terminal-window::before {
+            content: '🎀';
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            font-size: 2rem;
+            z-index: 11;
+            filter: drop-shadow(0 0 10px rgba(255, 105, 180, 0.8));
+        }
+
+        .terminal-header {
+            background: linear-gradient(145deg, #ff69b4, #da70d6);
+            padding: 15px 20px;
+            border-radius: 13px 13px 0 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid #ff1493;
+            position: relative;
+        }
+
+        .terminal-header::after {
+            content: '✨💖✨';
+            position: absolute;
+            right: 15px;
+            font-size: 1.2rem;
+            animation: sparkleGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes sparkleGlow {
+            0% { filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5)); }
+            100% { filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.9)); }
+        }
+
+        .terminal-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .terminal-button {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .close { 
+            background: linear-gradient(145deg, #ff69b4, #ff1493);
+            border: 2px solid #ffffff;
+        }
+        .minimize { 
+            background: linear-gradient(145deg, #da70d6, #ba55d3);
+            border: 2px solid #ffffff;
+        }
+        .maximize { 
+            background: linear-gradient(145deg, #dda0dd, #9370db);
+            border: 2px solid #ffffff;
+        }
+
+        .terminal-button:hover {
+            transform: scale(1.2);
+            filter: brightness(1.3) drop-shadow(0 0 10px currentColor);
+        }
+
+        .terminal-title {
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 14px;
+            color: #ffffff;
+            font-weight: 600;
+            font-family: 'Comfortaa', sans-serif;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .terminal-body {
+            flex: 1;
+            padding: 25px;
+            background: linear-gradient(145deg, #fdf2f8, #fce7f3);
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .terminal-content {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .prompt {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .prompt-symbol {
+            color: #c2185b;
+            margin-right: 8px;
+            font-weight: 700;
+            text-shadow: 0 0 5px rgba(194, 24, 91, 0.3);
+        }
+
+        .user-info {
+            color: #8e24aa;
+            margin-right: 4px;
+            font-weight: 600;
+        }
+
+        .path {
+            color: #ad1457;
+            margin-right: 8px;
+            font-weight: 500;
+        }
+
+        .input-line {
+            display: flex;
+            align-items: center;
+            margin: 18px 0;
+            background: rgba(255, 255, 255, 0.4);
+            padding: 10px;
+            border-radius: 10px;
+            border: 2px solid #ff69b4;
+            box-shadow: inset 0 2px 5px rgba(255, 105, 180, 0.1);
+        }
+
+        .terminal-input {
+            background: transparent;
+            border: none;
+            color: #880e4f;
+            font-family: inherit;
+            font-size: 14px;
+            outline: none;
+            flex: 1;
+            margin-left: 8px;
+            font-weight: 500;
+        }
+
+        .terminal-input::placeholder {
+            color: #c2185b;
+            opacity: 0.6;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 20px;
+            background: linear-gradient(45deg, #ff69b4, #da70d6);
+            animation: blink 1s infinite;
+            margin-left: 3px;
+            border-radius: 2px;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .output {
+            margin: 15px 0;
+            white-space: pre-wrap;
+        }
+
+        .command {
+            color: #ad1457;
+            font-weight: 600;
+        }
+
+        .success {
+            color: #7b1fa2;
+            font-weight: 600;
+        }
+
+        .error {
+            color: #e91e63;
+            font-weight: 600;
+        }
+
+        .warning {
+            color: #f06292;
+            font-weight: 600;
+        }
+
+        .highlight {
+            color: #c2185b;
+            font-weight: 700;
+            background: rgba(255, 182, 193, 0.3);
+            padding: 2px 6px;
+            border-radius: 5px;
+        }
+
+        .section-header {
+            color: #8e24aa;
+            font-weight: 700;
+            font-size: 18px;
+            margin: 25px 0 15px 0;
+            text-decoration: underline;
+            text-decoration-color: #ff69b4;
+            font-family: 'Comfortaa', sans-serif;
+            position: relative;
+        }
+
+        .section-header::before {
+            content: '🌸';
+            margin-right: 10px;
+        }
+
+        .section-header::after {
+            content: '🌸';
+            margin-left: 10px;
+        }
+
+        .item {
+            margin: 20px 0;
+            padding: 15px 20px;
+            border-left: 4px solid #ff69b4;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 0 10px 10px 0;
+            box-shadow: 0 3px 10px rgba(255, 105, 180, 0.1);
+        }
+
+        .item-title {
+            color: #ad1457;
+            font-weight: 700;
+            font-size: 16px;
+            position: relative;
+        }
+
+        .item-title::before {
+            content: '💎 ';
+            color: #da70d6;
+        }
+
+        .item-subtitle {
+            color: #8e24aa;
+            font-size: 13px;
+            margin: 4px 0;
+            font-weight: 500;
+        }
+
+        .item-description {
+            color: #880e4f;
+            margin: 8px 0;
+            line-height: 1.7;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 12px 0;
+        }
+
+        .tag {
+            background: linear-gradient(45deg, #ff69b4, #da70d6);
+            color: #ffffff;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 11px;
+            border: 2px solid #ffffff;
+            box-shadow: 0 2px 5px rgba(255, 105, 180, 0.3);
+            font-weight: 600;
+        }
+
+        .help-command {
+            color: #ad1457;
+            margin: 8px 0;
+            padding: 5px 0;
+        }
+
+        .ascii-art {
+            color: #c2185b;
+            font-size: 11px;
+            line-height: 1.1;
+            margin: 25px 0;
+            text-align: center;
+            filter: drop-shadow(0 0 10px rgba(194, 24, 91, 0.3));
+        }
+
+        .typing-indicator {
+            color: #f06292;
+            animation: pulse 1.5s infinite;
+            font-weight: 600;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .history {
+            max-height: calc(100vh - 250px);
+            overflow-y: auto;
+        }
+
+        .welcome-message {
+            color: #7b1fa2;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .cute-divider {
+            text-align: center;
+            margin: 20px 0;
+            color: #ff69b4;
+            font-size: 1.5rem;
+            animation: sparkleGlow 3s ease-in-out infinite alternate;
+        }
+
+        /* Custom scrollbar */
+        .history::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .history::-webkit-scrollbar-track {
+            background: rgba(255, 182, 193, 0.2);
+            border-radius: 10px;
+        }
+
+        .history::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #ff69b4, #da70d6);
+            border-radius: 10px;
+        }
+
+        .history::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #ff1493, #c71585);
+        }
+
+        @media (max-width: 768px) {
+            .terminal-window {
+                margin: 10px;
+                height: calc(100vh - 20px);
+                border-radius: 10px;
+            }
+            
+            .terminal-header {
+                border-radius: 8px 8px 0 0;
+                padding: 12px 16px;
+            }
+            
+            .terminal-body {
+                padding: 20px 15px;
+            }
+            
+            .terminal-content {
+                font-size: 13px;
+            }
+            
+            .floating-decoration {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Special pink terminal theme */
+        .terminal-window {
+            background: linear-gradient(145deg, 
+                rgba(255, 228, 236, 0.95), 
+                rgba(248, 187, 217, 0.95));
+            backdrop-filter: blur(20px);
+        }
+
+        .love-mode {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 4rem;
+            color: #ff1493;
+            z-index: 1000;
+            animation: heartBeat 2s ease-in-out;
+            pointer-events: none;
+        }
+
+        @keyframes heartBeat {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating cute decorations -->
+    <div class="floating-decoration bow">🎀</div>
+    <div class="floating-decoration sparkle">✨</div>
+    <div class="floating-decoration heart">💖</div>
+    <div class="floating-decoration bow">🎀</div>
+    <div class="floating-decoration sparkle">✨</div>
+    <div class="floating-decoration heart">💕</div>
+
+    <div class="terminal-window">
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <div class="terminal-button close"></div>
+                <div class="terminal-button minimize"></div>
+                <div class="terminal-button maximize"></div>
+            </div>
+            <div class="terminal-title">✨ girlie-terminal — cute-bash — 80×24 💖</div>
+        </div>
+        
+        <div class="terminal-body">
+            <div class="terminal-content">
+                <div class="history" id="history">
+                    <div class="welcome-message">
+                        <div class="ascii-art">
+╭─────────────────────────────────────────────────────────────╮
+│  💖 ████████╗███████╗██████╗ ███╗   ███╗██╗███╗   ██╗  💖 │
+│  🌸 ╚══██╔══╝██╔════╝██╔══██╗████╗ ████║██║████╗  ██║  🌸 │
+│  💎    ██║   █████╗  ██████╔╝██╔████╔██║██║██╔██╗ ██║  💎 │
+│  🎀    ██║   ██╔══╝  ██╔══██╗██║╚██╔╝██║██║██║╚██╗██║  🎀 │
+│  ✨    ██║   ███████╗██║  ██║██║ ╚═╝ ██║██║██║ ╚████║  ✨ │
+│  💕    ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝  💕 │
+│                                                             │
+│           🌸 G I R L I E   P O R T F O L I O 🌸           │
+│                    💖 T E R M I N A L 💖                  │
+╰─────────────────────────────────────────────────────────────╯
+                        </div>
+                        <div class="success">Welcome to my super cute interactive portfolio terminal! 🎀✨</div>
+                        <div class="cute-divider">🌸 💎 🌸 💎 🌸</div>
+                        <div class="output">Type <span class="highlight">'help'</span> to see all the adorable commands! 💖</div>
+                        <div class="output">Made with lots of love, pink vibes, and sparkles ✨🦄💕</div>
+                        <div class="cute-divider">💖 ✨ 🎀 ✨ 💖</div>
+                    </div>
+                </div>
+                
+                <div class="input-line">
+                    <span class="prompt-symbol">🌸</span>
+                    <span class="user-info">princess@portfolio</span>
+                    <span class="path">~/cute-terminal</span>
+                    <span class="prompt-symbol">💖</span>
+                    <input type="text" class="terminal-input" id="commandInput" autocomplete="off" spellcheck="false" placeholder="Type a cute command...">
+                    <span class="cursor"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const portfolioData = {
+            projects: [
+                {
+                    title: "E-Commerce Platform 💎",
+                    subtitle: "Full-Stack Web Application | 2024 🌸",
+                    description: "A super cute and modern e-commerce platform with real-time inventory management, secure payment processing, and an adorable admin dashboard. Built for scalability and maximum cuteness! 💖",
+                    tags: ["React", "Node.js", "MongoDB", "Stripe", "Socket.io"],
+                    details: "Features user authentication, shopping cart, payment processing, and real-time notifications. Increased client sales by 150% with sparkly animations! ✨"
+                },
+                {
+                    title: "AI-Powered Task Manager 🦄",
+                    subtitle: "Machine Learning Application | 2024 🎀",
+                    description: "An intelligent and adorable task management app using ML algorithms to prioritize tasks and optimize productivity. Comes with cute mascot and encouraging messages! 💕",
+                    tags: ["Python", "TensorFlow", "React", "Flask", "PostgreSQL"],
+                    details: "Uses natural language processing and predictive analytics with a touch of magic. Users reported 40% improvement in task completion rates and 100% increase in smiles! 🌟"
+                },
+                {
+                    title: "Digital Art Marketplace 🎨",
+                    subtitle: "Blockchain/Web3 Application | 2023 💜",
+                    description: "A dreamy decentralized NFT marketplace for digital artists with integrated wallet functionality and smart contract-based royalty distribution. Where art meets cuteness! 🌈",
+                    tags: ["React", "Solidity", "Web3.js", "IPFS", "MetaMask"],
+                    details: "Facilitated over $100K in NFT sales within the first month. Gas-optimized smart contracts with kawaii error messages! 🚀"
+                },
+                {
+                    title: "Sustainable Living App 🌱",
+                    subtitle: "Mobile Application | 2023 🌸",
+                    description: "A super cute gamified mobile app promoting environmental consciousness through daily challenges, carbon footprint tracking, and community features. Save the planet in style! 🌍💖",
+                    tags: ["React Native", "Firebase", "Node.js", "Google Maps API"],
+                    details: "50,000+ downloads with 4.8-star rating. Integrates with local businesses and environmental APIs. Features adorable earth mascot! 🌎✨"
+                }
+            ],
+            achievements: [
+                {
+                    title: "Tech Innovation Award 2024 🏆",
+                    subtitle: "Industry Recognition | TechCorp Global 💎",
+                    description: "Recognized for outstanding contribution to open-source projects and innovative solutions in web development. This award celebrates community impact, technical excellence, and bringing cuteness to code! 💖",
+                    tags: ["Open Source", "Innovation", "Community", "Cuteness"],
+                    details: "My OSS projects have 50,000+ downloads and contribute to developer productivity worldwide. Also added 1000+ more heart emojis to GitHub! 💕"
+                },
+                {
+                    title: "Hackathon Winner - TechCrunch Disrupt 🥇",
+                    subtitle: "First Place | 2024 🌟",
+                    description: "Won first place among 200+ teams for developing AccessiCheck - an AI-powered web accessibility analyzer that helps companies improve digital inclusion. Made accessibility adorable! 🎀",
+                    tags: ["AI/ML", "Accessibility", "Innovation", "Leadership"],
+                    details: "Project now adopted by 50+ companies. Led team of 4 developers in 48-hour challenge fueled by pink lattes and determination! ☕💖"
+                },
+                {
+                    title: "Open Source Contributor 🌸",
+                    subtitle: "GitHub | 2022-Present 💜",
+                    description: "Active contributor to major open-source projects including React ecosystem tools, accessibility libraries, and developer productivity tools. Spreading love through code! 💕",
+                    tags: ["React", "JavaScript", "TypeScript", "Community"],
+                    details: "500+ contributions, 15+ repositories maintained, mentoring new contributors. My commits always include cute commit messages! 🦄"
+                },
+                {
+                    title: "Tech Speaker & Mentor 🎤",
+                    subtitle: "Conference Speaker | 2023-2024 ✨",
+                    description: "Keynote speaker at 5+ tech conferences on topics including accessible design, modern web development, and diversity in tech. Always wearing pink! 💖",
+                    tags: ["Public Speaking", "Mentorship", "Accessibility"],
+                    details: "Reached 2000+ developers, mentored 25+ junior developers in career growth. Known for slides with cat memes and technical excellence! 🐱"
+                }
+            ],
+            education: [
+                {
+                    title: "Master of Science in Computer Science 🎓",
+                    subtitle: "Stanford University | 2021-2023 🌸",
+                    description: "Specialized in Machine Learning and Human-Computer Interaction with focus on accessible design principles and AI ethics. Thesis defense included glitter! ✨",
+                    tags: ["ML", "HCI", "Accessibility", "AI Ethics"],
+                    details: "GPA: 3.8/4.0. Thesis: 'Improving Web Accessibility Through AI-Powered Design Recommendations (With Extra Sparkles)' 💎"
+                },
+                {
+                    title: "Bachelor of Science in Software Engineering 💻",
+                    subtitle: "University of California, Berkeley | 2017-2021 🌈",
+                    description: "Comprehensive program covering software development, algorithms, data structures, and system design with emphasis on practical applications and maximum cuteness! 💖",
+                    tags: ["Software Engineering", "Algorithms", "System Design"],
+                    details: "Magna Cum Laude, GPA: 3.7/4.0. Senior project won Best Innovation Award and Cutest UI Award! 🏆"
+                },
+                {
+                    title: "Full-Stack Development Bootcamp 🚀",
+                    subtitle: "General Assembly | 2020 💜",
+                    description: "Intensive 12-week program covering modern web development technologies and best practices in agile development environments. Coded with style! 💅",
+                    tags: ["Web Development", "JavaScript", "React", "Node.js"],
+                    details: "Top 5% of cohort. Built 3 full-stack applications including team collaboration platform with kawaii avatars! 🎀"
+                },
+                {
+                    title: "Certified Accessibility Professional ♿",
+                    subtitle: "International Association of Accessibility Professionals | 2023 🌟",
+                    description: "Professional certification in web accessibility standards (WCAG), testing methodologies, and inclusive design principles. Making the web cute for everyone! 💕",
+                    tags: ["Accessibility", "WCAG", "Inclusive Design"],
+                    details: "Comprehensive certification covering legal requirements, testing tools, and remediation strategies. Plus rainbow color contrast guides! 🌈"
+                }
+            ],
+            hobbies: [
+                {
+                    title: "Digital Art & Design 🎨",
+                    subtitle: "Creative Expression | 2019-Present 💖",
+                    description: "Creating kawaii digital illustrations, UI/UX mockups, and generative art using tools like Procreate, Figma, and p5.js. Love exploring the intersection of code and creativity with maximum cuteness! 🌸",
+                    tags: ["Digital Art", "Procreate", "Figma", "p5.js", "Kawaii"],
+                    details: "Published artwork on Behance with 10k+ views. Created custom illustrations for 5+ clients. Specializing in pastel colors and sparkles! ✨"
+                },
+                {
+                    title: "Aesthetic Café Hopping ☕",
+                    subtitle: "Pink Latte Adventures | 2020-Present 🌸",
+                    description: "Exploring the cutest coffee shops and cafés, trying pink lattes, matcha drinks, and aesthetic treats. Always hunting for the most Instagram-worthy spots! 📸💕",
+                    tags: ["Coffee", "Aesthetics", "Photography", "Pink Lattes"],
+                    details: "Visited 100+ cute cafés across 8 different cities. Instagram feed is 90% coffee and pastels! 🧁"
+                },
+                {
+                    title: "Kawaii Collecting & Crafting 🎀",
+                    subtitle: "Cute Things Enthusiast | 2018-Present 💎",
+                    description: "Collecting adorable items like Sanrio characters, cute stationery, and pastel accessories. Also love DIY crafting projects with glitter and ribbons! ✨",
+                    tags: ["Kawaii", "Collecting", "DIY", "Crafting", "Sanrio"],
+                    details: "Collection includes 200+ cute items. Created handmade accessories for friends. Glitter is my favorite craft supply! 🌟"
+                },
+                {
+                    title: "Tech Blogging with Style 💻",
+                    subtitle: "Cute Content Creation | 2022-Present 🦄",
+                    description: "Writing technical articles about web development, accessibility, and emerging technologies with a cute twist. Creating video tutorials and hosting live coding sessions in pink setup! 💖",
+                    tags: ["Blogging", "Tutorial Creation", "Live Coding", "Pink Setup"],
+                    details: "Published 25+ articles with 100K+ total views. YouTube channel with 5k+ subscribers. Known for pink coding setup and cat interruptions! 🐱"
+                },
+                {
+                    title: "Pastel Gaming & Streaming 🎮",
+                    subtitle: "Cute Gaming Setup | 2021-Present 🌈",
+                    description: "Gaming with an adorable pink and purple setup, streaming cozy games and indie titles. Building a supportive community of fellow cute gamers! 💕",
+                    tags: ["Gaming", "Streaming", "Cozy Games", "Pink Setup"],
+                    details: "Twitch affiliate with 3k+ followers. Specializing in Animal Crossing, Stardew Valley, and other wholesome games. Setup features RGB lighting in pastel colors! 🌸"
+                }
+            ]
+        };
+
+        const commands = {
+            help: () => `
+<span class="section-header">🌸 Available Cute Commands 🌸</span>
+<div class="help-command">🎀 <span class="highlight">help</span>                 - Show this adorable help message</div>
+<div class="help-command">💖 <span class="highlight">about</span>                - Learn about this cute developer</div>
+<div class="help-command">💎 <span class="highlight">projects</span>             - View my kawaii development projects</div>
+<div class="help-command">🏆 <span class="highlight">achievements</span>         - See my sparkly accomplishments</div>
+<div class="help-command">🎓 <span class="highlight">education</span>            - Check my educational journey</div>
+<div class="help-command">🦄 <span class="highlight">hobbies</span>              - Discover my cute interests</div>
+<div class="help-command">✨ <span class="highlight">skills</span>               - List my magical technical skills</div>
+<div class="help-command">💌 <span class="highlight">contact</span>              - Get my contact information</div>
+<div class="help-command">🌸 <span class="highlight">clear</span>                - Clear this pretty terminal</div>
+<div class="help-command">👑 <span class="highlight">whoami</span>               - Current user info</div>
+<div class="help-command">🏠 <span class="highlight">pwd</span>                  - Print working directory</div>
+<div class="help-command">💕 <span class="highlight">love</span>                 - Spread some love!</div>
+
+<div
