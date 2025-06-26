@@ -91,16 +91,15 @@
             line-height: 1.6;
         }
         
+        .prompt, .command, .typing-animation {
+            font-size: 1em;
+            line-height: 1.5em;
+            vertical-align: middle;
+        }
+        
         .prompt {
             color: #e91e63;
             margin-bottom: 10px;
-        }
-        
-        .command, .typing-animation {
-            height: 1.5em;
-            line-height: 1.5em;
-            display: flex;
-            align-items: center;
         }
         
         .output {
@@ -527,6 +526,7 @@
                         section.style.display = 'none';
                     });
                 } else if (command === 'help') {
+                    document.querySelector('.help-menu').style.display = 'block';
                     document.querySelector('.help-menu').scrollIntoView({ behavior: 'smooth' });
                 }
                 
