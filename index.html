@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>~/Pratfolio - Pratishtha's Portfolio 🎀</title>
+    <title>~/your-name - Terminal Portfolio 🎀</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
@@ -96,9 +96,11 @@
             margin-bottom: 10px;
         }
         
-        .command {
-            color: #ad1457;
-            font-weight: 500;
+        .command, .typing-animation {
+            height: 1.5em;
+            line-height: 1.5em;
+            display: flex;
+            align-items: center;
         }
         
         .output {
@@ -111,6 +113,7 @@
             display: flex;
             align-items: center;
             margin-bottom: 10px;
+            gap: 6px;
         }
         
         .cursor {
@@ -257,6 +260,10 @@
             font-size: inherit;
             outline: none;
             flex: 1;
+            padding: 0;
+            margin: 0;
+            height: 1.5em;
+            line-height: 1.5em;
         }
         
         .status-bar {
@@ -287,7 +294,7 @@
                 <button class="btn maximize"></button>
             </div>
             <div class="terminal-title">
-                <span>~/pratfolio05</span>
+                <span>~/your-portfolio</span>
                 <span class="bow">🎀</span>
             </div>
             <div></div>
@@ -303,56 +310,57 @@
             
             <div class="terminal-content">
                 <div class="input-line">
-                    <span class="prompt">pratbat@portfolio:~$</span>
+                    <span class="prompt">girlie@portfolio:~$</span>
                     <span class="command typing-animation">whoami</span>
                 </div>
                 
                 <div class="output">
                     <div style="color: #e91e63; font-weight: 500; margin-bottom: 10px;">
-                        ✨ Hey there! I'm Pratishtha. I like to build, innovate and bring my ideas to life :)
+                        ✨ Hey there! I'm [Your Name] - Tech Girlie & Code Princess 👑
                     </div>
                     <div style="color: #ad1457;">
-                      Developer | Tech Innovator | Researcher
+                        💻 Full-Stack Developer | 🎨 UI/UX Enthusiast | 🚀 Tech Innovator
                     </div>
                 </div>
                 
-                <div class="help-menu">
+                <div id="help-menu" class="help-menu" style="display: none;">
                     <div class="help-title">
-                        <span>🎀 Quick Menu - Click any option below:</span>
+                        <span>🎀 Available Commands:</span>
                     </div>
-                    <div class="command-list">
-                        <div class="command-item" onclick="showSection('about')">about</div>
-                        <div class="command-item" onclick="showSection('projects')">projects</div>
-                        <div class="command-item" onclick="showSection('skills')">skills</div>
-                        <div class="command-item" onclick="showSection('education')">education</div>
-                        <div class="command-item" onclick="showSection('achievements')">achievements</div>
-                        <div class="command-item" onclick="showSection('contact')">contact</div>
+                    <div class="output">
+                        <div style="margin: 5px 0;">• about - Learn more about me</div>
+                        <div style="margin: 5px 0;">• projects - View my projects</div>
+                        <div style="margin: 5px 0;">• skills - See my technical skills</div>
+                        <div style="margin: 5px 0;">• education - My educational background</div>
+                        <div style="margin: 5px 0;">• achievements - Awards and accomplishments</div>
+                        <div style="margin: 5px 0;">• contact - Get in touch with me</div>
+                        <div style="margin: 5px 0;">• clear - Clear the screen</div>
                     </div>
                 </div>
                 
                 <div id="about" class="section" style="display: none;">
                     <div class="input-line">
-                        <span class="prompt">pratbat@portfolio:~$</span>
+                        <span class="prompt">girlie@portfolio:~$</span>
                         <span class="command">about</span>
                     </div>
                     <div class="output">
                         <div class="section-title">💫 About Me</div>
-                        <p>I'm a passionate girl in tech  who loves creating beautiful, functional code! 
-                        When I'm not debugging or designing, you can find me exploring the latest tech trends 
-                       and turning ideas into reality through code. 
-                        I believe in making tech more inclusive and aesthetic! </p>
+                        <p>I'm a passionate tech girlie who loves creating beautiful, functional code! 
+                        When I'm not debugging or designing, you can find me exploring the latest tech trends, 
+                        sipping pink matcha lattes ☕, and turning ideas into reality through code. 
+                        I believe in making tech more inclusive and aesthetic! 🌸</p>
                     </div>
                 </div>
                 
                 <div id="projects" class="section" style="display: none;">
                     <div class="input-line">
-                        <span class="prompt">pratbat@portfolio:~$</span>
+                        <span class="prompt">girlie@portfolio:~$</span>
                         <span class="command">projects</span>
                     </div>
                     <div class="output">
-                        <div class="section-title">My Projects</div>
+                        <div class="section-title">🚀 My Projects</div>
                         <div class="project-card">
-                            <div class="card-title">Pink Task Manager App</div>
+                            <div class="card-title">💖 Pink Task Manager App</div>
                             <div class="card-content">
                                 A cute productivity app with pink UI/UX design<br>
                                 Tech: React, Node.js, MongoDB<br>
@@ -360,7 +368,7 @@
                             </div>
                         </div>
                         <div class="project-card">
-                            <div class="card-title">E-commerce Fashion Site</div>
+                            <div class="card-title">🎀 E-commerce Fashion Site</div>
                             <div class="card-content">
                                 Full-stack fashion e-commerce with modern design<br>
                                 Tech: Vue.js, Express, PostgreSQL<br>
@@ -368,7 +376,7 @@
                             </div>
                         </div>
                         <div class="project-card">
-                            <div class="card-title">Weather App with Cute Animations</div>
+                            <div class="card-title">✨ Weather App with Cute Animations</div>
                             <div class="card-content">
                                 Weather app with adorable UI and smooth animations<br>
                                 Tech: JavaScript, CSS3, Weather API<br>
@@ -380,25 +388,25 @@
                 
                 <div id="skills" class="section" style="display: none;">
                     <div class="input-line">
-                        <span class="prompt">pratbat@portfolio:~$</span>
+                        <span class="prompt">girlie@portfolio:~$</span>
                         <span class="command">skills</span>
                     </div>
                     <div class="output">
-                        <div class="section-title"> Technical Skills</div>
+                        <div class="section-title">💻 Technical Skills</div>
                         <div class="skill-card">
-                            <div class="card-title"> Frontend</div>
+                            <div class="card-title">🎨 Frontend</div>
                             <div class="card-content">React, Vue.js, HTML5, CSS3, JavaScript, TypeScript, Sass</div>
                         </div>
                         <div class="skill-card">
-                            <div class="card-title"> Backend</div>
+                            <div class="card-title">⚙️ Backend</div>
                             <div class="card-content">Node.js, Python, Express, Django, REST APIs</div>
                         </div>
                         <div class="skill-card">
-                            <div class="card-title"> Databases</div>
+                            <div class="card-title">🗄️ Databases</div>
                             <div class="card-content">MongoDB, PostgreSQL, MySQL, Firebase</div>
                         </div>
                         <div class="skill-card">
-                            <div class="card-title"> Design & Tools</div>
+                            <div class="card-title">🎯 Design & Tools</div>
                             <div class="card-content">Figma, Adobe XD, Git, Docker, AWS, Netlify</div>
                         </div>
                     </div>
@@ -406,20 +414,20 @@
                 
                 <div id="education" class="section" style="display: none;">
                     <div class="input-line">
-                        <span class="prompt">pratbat@portfolio:~$</span>
+                        <span class="prompt">girlie@portfolio:~$</span>
                         <span class="command">education</span>
                     </div>
                     <div class="output">
-                        <div class="section-title"> Education</div>
+                        <div class="section-title">🎓 Education</div>
                         <div class="education-card">
-                            <div class="card-title">📚 Bachelor of Technology in Electronics and Communication Engineering</div>
+                            <div class="card-title">📚 Bachelor of Computer Science</div>
                             <div class="card-content">
-                                University Name | Indira Gandhi  Delhi Technical University for Women | 2023-2027<br>
-                                CGPA: 9.25/10 | Department Rank: 2
+                                University Name | 2020-2024<br>
+                                GPA: 3.8/4.0 | Dean's List
                             </div>
                         </div>
                         <div class="education-card">
-                            <div class="card-title"> Certifications</div>
+                            <div class="card-title">🏆 Certifications</div>
                             <div class="card-content">
                                 • AWS Certified Developer<br>
                                 • Google UX Design Certificate<br>
@@ -431,21 +439,21 @@
                 
                 <div id="achievements" class="section" style="display: none;">
                     <div class="input-line">
-                        <span class="prompt">pratbat@portfolio:~$</span>
+                        <span class="prompt">girlie@portfolio:~$</span>
                         <span class="command">achievements</span>
                     </div>
                     <div class="output">
-                        <div class="section-title"> Achievements</div>
+                        <div class="section-title">🏆 Achievements</div>
                         <div class="project-card">
-                            <div class="card-title"> Hackathon Winner</div>
+                            <div class="card-title">🥇 Hackathon Winner</div>
                             <div class="card-content">1st Place at TechGirl Hackathon 2024 - Built AI-powered study assistant</div>
                         </div>
                         <div class="project-card">
-                            <div class="card-title"> Open Source Contributor</div>
+                            <div class="card-title">💫 Open Source Contributor</div>
                             <div class="card-content">300+ contributions to various open source projects</div>
                         </div>
                         <div class="project-card">
-                            <div class="card-title"> Tech Speaker</div>
+                            <div class="card-title">🎤 Tech Speaker</div>
                             <div class="card-content">Spoke at 5+ tech conferences about inclusive design</div>
                         </div>
                     </div>
@@ -453,7 +461,7 @@
                 
                 <div id="contact" class="section" style="display: none;">
                     <div class="input-line">
-                        <span class="prompt">pratbat@portfolio:~$</span>
+                        <span class="prompt">girlie@portfolio:~$</span>
                         <span class="command">contact</span>
                     </div>
                     <div class="output">
@@ -468,9 +476,8 @@
                 </div>
                 
                 <div class="input-line" style="margin-top: 30px;">
-                    <span class="prompt">pratbat@portfolio:~$</span>
-                    <input type="text" class="interactive-input" id="commandInput" placeholder="Type a command... 💕">
-                    <span class="cursor"></span>
+                    <span class="prompt">girlie@portfolio:~$</span>
+                    <input type="text" class="interactive-input" id="commandInput" placeholder="Type 'help' to get started... 💕">
                 </div>
             </div>
         </div>
