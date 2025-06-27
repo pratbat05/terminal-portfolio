@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>~/Pratfolio - Pratishtha's Portfolio 🎀</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
@@ -299,7 +298,7 @@
             </div>
             <div></div>
         </div>
-
+        
         <div class="terminal-body">
             <div class="sparkles">
                 <span class="sparkle" style="top: 10%; left: 20%;">✨</span>
@@ -307,13 +306,13 @@
                 <span class="sparkle" style="top: 60%; left: 15%; animation-delay: 2s;">🎀</span>
                 <span class="sparkle" style="top: 80%; left: 70%; animation-delay: 3s;">✨</span>
             </div>
-
+            
             <div class="terminal-content">
                 <div class="input-line">
                     <span class="prompt">pratbat@portfolio:~$</span>
                     <span class="command typing-animation">pratbat05</span>
                 </div>
-
+                
                 <div class="output">
                     <div style="color: #e91e63; font-weight: 500; margin-bottom: 10px;">
                         ✨ Hey there! I'm Pratishtha - 
@@ -322,7 +321,22 @@
                         Developer | Researcher | Innovator
                     </div>
                 </div>
-
+                
+                <div id="help-menu" class="help-menu" style="display: none;">
+                    <div class="help-title">
+                        <span>🎀 Available Commands:</span>
+                    </div>
+                    <div class="output">
+                        <div style="margin: 5px 0;">• about - Learn more about me</div>
+                        <div style="margin: 5px 0;">• projects - View my projects</div>
+                        <div style="margin: 5px 0;">• skills - See my technical skills</div>
+                        <div style="margin: 5px 0;">• education - My educational background</div>
+                        <div style="margin: 5px 0;">• achievements - Awards and accomplishments</div>
+                        <div style="margin: 5px 0;">• contact - Get in touch with me</div>
+                        <div style="margin: 5px 0;">• clear - Clear the screen</div>
+                    </div>
+                </div>
+                
                 <div id="about" class="section" style="display: none;">
                     <div class="input-line">
                         <span class="prompt">pratbat@portfolio:~$</span>
@@ -330,10 +344,13 @@
                     </div>
                     <div class="output">
                         <div class="section-title">About Me</div>
-                        <p>I’m a tech enthusiast with a deep interest in research, development, and inclusive innovation. I'm currently a Research Intern at Ecole Centrale de Nantes, where I work on modeling and analyzing fibre orientations using Python. Passionate about machine learning and data science, I enjoy creating tools that combine functionality and elegance.</p>
+                        <p>I'm a passionate girl in tech who loves creating beautiful, functional code! 
+                        When I'm not debugging or designing, you can find me exploring the latest tech trends
+                        and turning ideas into reality through code. 
+                        I believe in making tech more inclusive and aesthetic! 🌸</p>
                     </div>
                 </div>
-
+                
                 <div id="projects" class="section" style="display: none;">
                     <div class="input-line">
                         <span class="prompt">pratbat@portfolio:~$</span>
@@ -342,67 +359,82 @@
                     <div class="output">
                         <div class="section-title">My Projects</div>
                         <div class="project-card">
-                            <div class="card-title">PaperSpeaker: Research Papers to Audiobooks</div>
-                            <div class="card-content">
-                                Tech: Python, PyMuPDF, gTTS, Tkinter<br>
-                                <a href="https://github.com/pratbat05/PaperSpeaker" style="color: #e91e63;">→ View Project</a>
+                            <div class="card-title">Pink Task Manager App</div>
+                            <div class="card-content"> <br>
+                                Tech: React, Node.js, MongoDB<br>
+                                <a href="#" style="color: #e91e63;">→ View Project</a>
                             </div>
                         </div>
                         <div class="project-card">
-                            <div class="card-title">Sentiment Analysis of Developer Discussions</div>
+                            <div class="card-title">E-commerce Fashion Site</div>
                             <div class="card-content">
-                                Tech: Python, Scikit-learn, Pandas, Logistic Regression, SVM<br>
-                                <a href="https://github.com/pratbat05" style="color: #e91e63;">→ View Project</a>
+                                Full-stack fashion e-commerce with modern design<br>
+                                Tech: Vue.js, Express, PostgreSQL<br>
+                                <a href="#" style="color: #e91e63;">→ View Project</a>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <div class="card-title"></div>
+                            <div class="card-content">
+                                <br>
+                                Tech: JavaScript, CSS3, Weather API<br>
+                                <a href="#" style="color: #e91e63;">→ View Project</a>
                             </div>
                         </div>
                     </div>
                 </div>
-
+                
                 <div id="skills" class="section" style="display: none;">
                     <div class="input-line">
                         <span class="prompt">pratbat@portfolio:~$</span>
                         <span class="command">skills</span>
                     </div>
                     <div class="output">
-                        <div class="section-title">Technical Skills</div>
+                        <div class="section-title">echnical Skills</div>
                         <div class="skill-card">
-                            <div class="card-title">Programming Languages</div>
-                            <div class="card-content">C++, Python, MySQL</div>
+                            <div class="card-title">Frontend</div>
+                            <div class="card-content">React, Vue.js, HTML5, CSS3, JavaScript, TypeScript, Sass</div>
                         </div>
                         <div class="skill-card">
-                            <div class="card-title">CS Fundamentals</div>
-                            <div class="card-content">Data Structures and Algorithms, OOP, DBMS</div>
+                            <div class="card-title">Backend</div>
+                            <div class="card-content">Node.js, Python, Express, Django, REST APIs</div>
                         </div>
                         <div class="skill-card">
-                            <div class="card-title">Data Science & ML</div>
-                            <div class="card-content">Python Libraries, Regression, Clustering, SVM, Tableau, Power BI</div>
+                            <div class="card-title">Databases</div>
+                            <div class="card-content">MongoDB, PostgreSQL, MySQL, Firebase</div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="card-title">Design & Tools</div>
+                            <div class="card-content">Figma, Adobe XD, Git, Docker, AWS, Netlify</div>
                         </div>
                     </div>
                 </div>
-
+                
                 <div id="education" class="section" style="display: none;">
                     <div class="input-line">
-                        <span class="prompt">pratbat@portfolio:~$</span>
+                        <span class="prompt">girlie@portfolio:~$</span>
                         <span class="command">education</span>
                     </div>
                     <div class="output">
                         <div class="section-title">Education</div>
                         <div class="education-card">
-                            <div class="card-title">B.Tech in Electronics & Communication Engineering</div>
+                            <div class="card-title">Bachelor of Technology in Electronics and Communication Engineering</div>
                             <div class="card-content">
-                                Indira Gandhi Delhi Technical University for Women (2023 - 2027)<br>
-                                CGPA: 9.25/10 | Department Rank: 2
+                                Indira Gandhi Delhi Technical University for Women| 2023-2027<br>
+                                GPA: 9.25/10 | Department Rank: 2
                             </div>
                         </div>
                         <div class="education-card">
-                            <div class="card-title">Senior Secondary Education</div>
+                            <div class="card-title">Certifications</div>
                             <div class="card-content">
-                                Delhi Public School, R.K. Puram | Grade XII: 96.2%, Grade X: 97.8%
+                                • <br>
+                                • <br>
+                                • 
                             </div>
                         </div>
                     </div>
                 </div>
-
+                
                 <div id="achievements" class="section" style="display: none;">
                     <div class="input-line">
                         <span class="prompt">pratbat@portfolio:~$</span>
@@ -411,50 +443,43 @@
                     <div class="output">
                         <div class="section-title">Achievements</div>
                         <div class="project-card">
-                            <div class="card-title">President, Minerva Tech Forum</div>
-                            <div class="card-content">Leading tech initiatives and mentoring members at IGDTUW.</div>
+                            <div class="card-title">Hackathon Winner</div>
+                            <div class="card-content">1st Place at TechGirl Hackathon 2024 - Built AI-powered study assistant</div>
                         </div>
                         <div class="project-card">
-                            <div class="card-title">🏆 Runners Up - AppNova Hackathon</div>
-                            <div class="card-content">Cognizance, IIT Roorkee, March 2025</div>
+                            <div class="card-title">💫 Open Source Contributor</div>
+                            <div class="card-content">300+ contributions to various open source projects</div>
                         </div>
                         <div class="project-card">
-                            <div class="card-title">🎤 Winners - Pitching & Entrepreneurship</div>
-                            <div class="card-content">Tryst 2025, IIT Delhi</div>
-                        </div>
-                        <div class="project-card">
-                            <div class="card-title">🏅 Second Runners Up - Ideathon 2.0</div>
-                            <div class="card-content">IIM Bangalore, July 2024</div>
-                        </div>
-                        <div class="project-card">
-                            <div class="card-title">💡 Smart India Hackathon Winner</div>
-                            <div class="card-content">Digital Edition, August 2022</div>
+                            <div class="card-title">🎤 Tech Speaker</div>
+                            <div class="card-content">Spoke at 5+ tech conferences about inclusive design</div>
                         </div>
                     </div>
                 </div>
-
+                
                 <div id="contact" class="section" style="display: none;">
                     <div class="input-line">
-                        <span class="prompt">pratbat@portfolio:~$</span>
+                        <span class="prompt">girlie@portfolio:~$</span>
                         <span class="command">contact</span>
                     </div>
                     <div class="output">
                         <div class="section-title">💌 Let's Connect!</div>
                         <div style="margin: 15px 0;">
-                            <div style="margin: 8px 0;"><span style="color: #e91e63;">📧 Email:</span> pratishthabatra@gmail.com</div>
-                            <div style="margin: 8px 0;"><span style="color: #e91e63;">💼 LinkedIn:</span> <a href="https://www.linkedin.com/in/pratishtha-batra-1795411b3" style="color:#e91e63;">/in/pratishtha-batra</a></div>
-                            <div style="margin: 8px 0;"><span style="color: #e91e63;">🐱 GitHub:</span> <a href="https://github.com/pratbat05" style="color:#e91e63;">/pratbat05</a></div>
+                            <div style="margin: 8px 0;"><span style="color: #e91e63;">📧 Email:</span> your.email@example.com</div>
+                            <div style="margin: 8px 0;"><span style="color: #e91e63;">💼 LinkedIn:</span> /in/yourname</div>
+                            <div style="margin: 8px 0;"><span style="color: #e91e63;">🐱 GitHub:</span> /yourusername</div>
+                            <div style="margin: 8px 0;"><span style="color: #e91e63;">🐦 Twitter:</span> @yourhandle</div>
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="input-line" style="margin-top: 30px;">
                     <span class="prompt">girlie@portfolio:~$</span>
                     <input type="text" class="interactive-input" id="commandInput" placeholder="Type 'help' to get started... 💕">
                 </div>
             </div>
         </div>
-
+        
         <div class="status-bar">
             <div class="status-left">💖 Made with love and lots of pink code</div>
             <div class="status-right">Press Tab for suggestions ✨</div>
