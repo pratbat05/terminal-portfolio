@@ -471,51 +471,68 @@
             <div class="status-right">Press Tab for suggestions ✨</div>
         </div>
     </div>
-
-
-<script>
-  const commandMap = {
-    "about": "about",
-    "projects": "projects",
-    "skills": "skills",
-    "education": "education",
-    "achievements": "achievements",
-    "contact": "contact"
-  };
-
-  function showSection(sectionId) {
-    const sections = document.querySelectorAll('.section');
-    sections.forEach(section => section.style.display = 'none');
-    const el = document.getElementById(sectionId);
-    if (el) {
-      el.style.display = 'block';
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
-  }
-
-  function clearSections() {
-    const sections = document.querySelectorAll('.section');
-    sections.forEach(section => section.style.display = 'none');
-  }
-
-  document.getElementById('commandInput').addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') {
-      const command = this.value.trim().toLowerCase();
-      this.value = '';
-
-      document.getElementById('help-menu').style.display = (command === 'help') ? 'block' : 'none';
-
-      if (command === 'clear') {
-        clearSections();
-        return;
-      }
-
-      if (commandMap.hasOwnProperty(command)) {
-        showSection(commandMap[command]);
-      }
-    }
-  });
-</script>
-            </div>body>
-        </div>html>
-
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).style.display = 'block';
+            
+            // Scroll to section
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Command input handler
+        document.getElementById('commandInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const command = this.value.toLowerCase().trim();
+                
+                if (command.includes('about')) {
+                    showSection('about');
+                } else if (command.includes('project')) {
+                    showSection('projects');
+                } else if (command.includes('skill')) {
+                    showSection('skills');
+                } else if (command.includes('education')) {
+                    showSection('education');
+                } else if (command.includes('achievement')) {
+                    showSection('achievements');
+                } else if (command.includes('contact')) {
+                    showSection('contact');
+                } else if (command === 'clear') {
+                    // Hide all sections
+                    const sections = document.querySelectorAll('.section');
+                    sections.forEach(section => {
+                        section.style.display = 'none';
+                    });
+                } else if (command === 'help') {
+                    document.querySelector('.help-menu').style.display = 'block';
+                    document.querySelector('.help-menu').scrollIntoView({ behavior: 'smooth' });
+                }
+                
+                this.value = '';
+            }
+        });
+        
+        // Add some interactive sparkles
+        setInterval(() => {
+            const sparkle = document.createElement('div');
+            sparkle.innerHTML = ['✨', '💖', '🎀', '💫'][Math.floor(Math.random() * 4)];
+            sparkle.className = 'sparkle';
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.top = Math.random() * 100 + '%';
+            sparkle.style.animationDelay = '0s';
+            
+            document.querySelector('.sparkles').appendChild(sparkle);
+            
+            setTimeout(() => {
+                sparkle.remove();
+            }, 4000);
+        }, 3000);
+    </script>
+</body>
+</html>
