@@ -1,284 +1,540 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>~/Pratfolio - Pratishtha's Portfolio 🎀</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Courier New', monospace;
-      background-color: #fff0f5;
-      color: #880e4f;
-    }
-    .terminal-window {
-      max-width: 900px;
-      margin: 30px auto;
-      background: #fce4ec;
-      border: 3px solid #f8bbd0;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.2);
-      overflow: hidden;
-    }
-    .terminal-header {
-      display: flex;
-      justify-content: space-between;
-      background: #f48fb1;
-      padding: 10px;
-      color: white;
-    }
-    .terminal-buttons {
-      display: flex;
-      gap: 5px;
-    }
-    .btn {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      border: none;
-      background-color: white;
-    }
-    .close { background: #f44336; }
-    .minimize { background: #ffeb3b; }
-    .maximize { background: #4caf50; }
-    .terminal-title {
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .terminal-body {
-      padding: 20px;
-      position: relative;
-    }
-    .sparkles {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      pointer-events: none;
-    }
-    .sparkle {
-      position: absolute;
-      font-size: 1.2rem;
-      animation: sparkle 3s infinite;
-    }
-    @keyframes sparkle {
-      0%, 100% { opacity: 0; transform: translateY(0); }
-      50% { opacity: 1; transform: translateY(-5px); }
-    }
-    .prompt {
-      color: #c2185b;
-      margin-right: 10px;
-    }
-    .command {
-      color: #ad1457;
-    }
-    .typing-animation {
-      animation: typing 2s steps(10) 1;
-      white-space: nowrap;
-      overflow: hidden;
-      display: inline-block;
-    }
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
-    }
-    .help-menu {
-      background-color: #f8bbd0;
-      padding: 15px;
-      border-radius: 10px;
-      margin-top: 15px;
-    }
-    .help-title {
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-    .section {
-      margin-top: 20px;
-      background-color: #fce4ec;
-      padding: 15px;
-      border-left: 3px solid #f06292;
-    }
-    .interactive-input {
-      background: transparent;
-      border: none;
-      outline: none;
-      font-family: 'Courier New', monospace;
-      font-size: 1rem;
-      color: #880e4f;
-      width: 80%;
-    }
-    .status-bar {
-      display: flex;
-      justify-content: space-between;
-      background: #f8bbd0;
-      padding: 10px;
-      font-size: 0.9rem;
-      color: #6a1b9a;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>~/Pratfolio - Pratishtha's Portfolio 🎀</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: #f8e8f5;
+            color: #d63384;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .terminal-window {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #fff0f6;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(214, 51, 132, 0.15);
+            border: 2px solid #e91e63;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        
+        .terminal-header {
+            background: #f8bbd9;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .terminal-buttons {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn.close { background: #ff5f57; }
+        .btn.minimize { background: #ffbd2e; }
+        .btn.maximize { background: #28ca42; }
+        
+        .terminal-title {
+            color: #d63384;
+            font-weight: 500;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .bow {
+            font-size: 16px;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-3px); }
+            60% { transform: translateY(-2px); }
+        }
+        
+        .terminal-body {
+            padding: 20px;
+            min-height: 500px;
+            background: #fef7f0;
+            position: relative;
+        }
+        
+        .terminal-content {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .prompt, .command, .typing-animation {
+            font-size: 1em;
+            line-height: 1.5em;
+            vertical-align: middle;
+        }
+        
+        .prompt {
+            color: #e91e63;
+            /* margin-bottom: 10px; */
+        }
+        
+        .output {
+            color: #c2185b;
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        
+        .input-line {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 10px;
+            gap: 6px;
+        }
+        
+        .cursor {
+            display: inline-block;
+            background: #e91e63;
+            width: 8px;
+            height: 18px;
+            margin-left: 2px;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        .help-menu {
+            background: #fce4ec;
+            border: 1px solid #e91e63;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .help-title {
+            color: #e91e63;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .command-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .command-item {
+            color: #ad1457;
+            padding: 8px 12px;
+            border: 1px solid #f8bbd9;
+            background: #fff;
+            border-radius: 6px;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .command-item:hover {
+            background: #fce4ec;
+            border-color: #e91e63;
+            transform: translateY(-2px);
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(214, 51, 132, 0.2);
+        }
+        
+        .section {
+            margin: 20px 0;
+            padding: 15px;
+            border-left: 3px solid #e91e63;
+            background: #fce4ec;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .section-title {
+            color: #e91e63;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .project-card, .education-card, .skill-card {
+            background: #fff;
+            border: 1px solid #f8bbd9;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover, .education-card:hover, .skill-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(214, 51, 132, 0.15);
+            border-color: #e91e63;
+        }
+        
+        .card-title {
+            color: #e91e63;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .card-content {
+            color: #ad1457;
+            font-size: 13px;
+        }
+        
+        .typing-animation {
+            overflow: hidden;
+            border-right: 2px solid #ff6b9d;
+            white-space: nowrap;
+            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #e91e63; }
+        }
+        
+        .sparkles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        
+        .sparkle {
+            position: absolute;
+            color: #e91e63;
+            font-size: 12px;
+            animation: sparkleFloat 4s infinite ease-in-out;
+        }
+        
+        @keyframes sparkleFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0; }
+            50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
+        }
+        
+        .interactive-input {
+            background: transparent;
+            border: none;
+            color: #c2185b;
+            font-family: inherit;
+            font-size: inherit;
+            outline: none;
+            flex: 1;
+            padding: 0;
+            margin: 0;
+            height: 1.5em;
+            line-height: 1.5em;
+        }
+        
+        .status-bar {
+            background: #f8bbd9;
+            padding: 10px 20px;
+            border-top: 1px solid #e91e63;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+        }
+        
+        .status-left {
+            color: #ad1457;
+        }
+        
+        .status-right {
+            color: #ad1457;
+        }
+    </style>
 </head>
 <body>
-  <div class="terminal-window">
-    <div class="terminal-header">
-      <div class="terminal-buttons">
-        <button class="btn close"></button>
-        <button class="btn minimize"></button>
-        <button class="btn maximize"></button>
-      </div>
-      <div class="terminal-title">
-        <span>~/Pratishtha Batra-Portfolio</span>
-        <span class="bow">🎀</span>
-      </div>
-      <div></div>
+    <div class="terminal-window">
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <button class="btn close"></button>
+                <button class="btn minimize"></button>
+                <button class="btn maximize"></button>
+            </div>
+            <div class="terminal-title">
+                <span>~/Pratishtha Batra-Portfolio</span>
+                <span class="bow">🎀</span>
+            </div>
+            <div></div>
+        </div>
+        
+        <div class="terminal-body">
+            <div class="sparkles">
+                <span class="sparkle" style="top: 10%; left: 20%;">✨</span>
+                <span class="sparkle" style="top: 30%; left: 80%; animation-delay: 1s;">💖</span>
+                <span class="sparkle" style="top: 60%; left: 15%; animation-delay: 2s;">🎀</span>
+                <span class="sparkle" style="top: 80%; left: 70%; animation-delay: 3s;">✨</span>
+            </div>
+            
+            <div class="terminal-content">
+                <div class="input-line">
+                    <span class="prompt">pratbat@portfolio:~$</span>
+                    <span class="command typing-animation">pratbat05</span>
+                </div>
+                
+                <div class="output">
+                    <div style="color: #e91e63; font-weight: 500; margin-bottom: 10px;">
+                        ✨ Hey there! I'm Pratishtha - 
+                    </div>
+                    <div style="color: #ad1457;">
+                        Developer | Researcher | Innovator
+                    </div>
+                </div>
+                
+                <div id="help-menu" class="help-menu" style="display: none;">
+                    <div class="help-title">
+                        <span>🎀 Available Commands:</span>
+                    </div>
+                    <div class="output">
+                        <div style="margin: 5px 0;">• about - Learn more about me</div>
+                        <div style="margin: 5px 0;">• projects - View my projects</div>
+                        <div style="margin: 5px 0;">• skills - See my technical skills</div>
+                        <div style="margin: 5px 0;">• education - My educational background</div>
+                        <div style="margin: 5px 0;">• achievements - Awards and accomplishments</div>
+                        <div style="margin: 5px 0;">• contact - Get in touch with me</div>
+                        <div style="margin: 5px 0;">• clear - Clear the screen</div>
+                    </div>
+                </div>
+                
+                <div id="about" class="section" style="display: none;">
+                    <div class="input-line">
+                        <span class="prompt">pratbat@portfolio:~$</span>
+                        <span class="command">about</span>
+                    </div>
+                    <div class="output">
+                        <div class="section-title">About Me</div>
+                        <p>I'm a passionate girl in tech who loves creating beautiful, functional code! 
+                        When I'm not debugging or designing, you can find me exploring the latest tech trends
+                        and turning ideas into reality through code. 
+                        I believe in making tech more inclusive and aesthetic! 🌸</p>
+                    </div>
+                </div>
+                
+                <div id="projects" class="section" style="display: none;">
+                    <div class="input-line">
+                        <span class="prompt">pratbat@portfolio:~$</span>
+                        <span class="command">projects</span>
+                    </div>
+                    <div class="output">
+                        <div class="section-title">My Projects</div>
+                        <div class="project-card">
+                            <div class="card-title">PaperSpeaker: Research Papers to Audiobooks</div>
+                            <div class="card-content"> <br>
+                                Tech: Python, PyMuPDF, gTTS, Tkinter<br>
+                                <a href="https://github.com/pratbat05/PaperSpeaker" style="color: #e91e63;">→ View Project</a>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <div class="card-title">Sentiment Analysis of Developer Discussions</div>
+                            <div class="card-content">
+                                <br>
+                                Tech: Python, Scikit-learn, Pandas, Logistic Regression, SVM<br>
+                                <a href="https://github.com/pratbat05" style="color: #e91e63;">→ View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                
+                <div id="skills" class="section" style="display: none;">
+                    <div class="input-line">
+                        <span class="prompt">pratbat@portfolio:~$</span>
+                        <span class="command">skills</span>
+                    </div>
+                    <div class="output">
+                        <div class="section-title">Technical Skills</div>
+                        <div class="skill-card">
+                            <div class="card-title">Programming Languages</div>
+                            <div class="card-content">Python, C++, MySQL, R</div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="card-title">CS Fundamentals</div>
+                            <div class="card-content">Data Structures and Algorithms, Object Oriented Programming, Database Management Systems, Computer Networks</div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="card-title">Data Science & ML</div>
+                            <div class="card-content">Python Libraries, Regression, Clustering, SVM, Tableau, Power BI</div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="card-title">Design & Tools</div>
+                            <div class="card-content">Figma, Adobe XD, Git, Docker, AWS, Netlify</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="education" class="section" style="display: none;">
+                    <div class="input-line">
+                        <span class="prompt">girlie@portfolio:~$</span>
+                        <span class="command">education</span>
+                    </div>
+                    <div class="output">
+                        <div class="section-title">Education</div>
+                        <div class="education-card">
+                            <div class="card-title">Bachelor of Technology in Electronics and Communication Engineering</div>
+                            <div class="card-content">
+                                Indira Gandhi Delhi Technical University for Women| 2023-2027<br>
+                                GPA: 9.25/10 | Department Rank: 2
+                        <div class="education-card">
+                            <div class="card-title">Senior Secondary Education</div>
+                            <div class="card-content">
+                                Delhi Public School, R.K. Puram | Grade XII: 96.2%, Grade X: 97.8%
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="achievements" class="section" style="display: none;">
+                    <div class="input-line">
+                        <span class="prompt">pratbat@portfolio:~$</span>
+                        <span class="command">achievements</span>
+                    </div>
+                    <div class="output">
+                        <div class="section-title">Achievements</div>
+                        <div class="project-card">
+                            <div class="card-title">Hackathon Winner</div>
+                            <div class="card-content">1st Place at TechGirl Hackathon 2024 - Built AI-powered study assistant</div>
+                        </div>
+                        <div class="project-card">
+                            <div class="card-title">💫 Open Source Contributor</div>
+                            <div class="card-content">300+ contributions to various open source projects</div>
+                        </div>
+                        <div class="project-card">
+                            <div class="card-title">🎤 Tech Speaker</div>
+                            <div class="card-content">Spoke at 5+ tech conferences about inclusive design</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="contact" class="section" style="display: none;">
+                    <div class="input-line">
+                        <span class="prompt">girlie@portfolio:~$</span>
+                        <span class="command">contact</span>
+                    </div>
+                    <div class="output">
+                        <div class="section-title">💌 Let's Connect!</div>
+                        <div style="margin: 15px 0;">
+                            <div style="margin: 8px 0;"><span style="color: #e91e63;">📧 Email:</span> your.email@example.com</div>
+                            <div style="margin: 8px 0;"><span style="color: #e91e63;">💼 LinkedIn:</span> /in/yourname</div>
+                            <div style="margin: 8px 0;"><span style="color: #e91e63;">🐱 GitHub:</span> /yourusername</div>
+                            <div style="margin: 8px 0;"><span style="color: #e91e63;">🐦 Twitter:</span> @yourhandle</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="input-line" style="margin-top: 30px;">
+                    <span class="prompt">girlie@portfolio:~$</span>
+                    <input type="text" class="interactive-input" id="commandInput" placeholder="Type 'help' to get started... 💕">
+                </div>
+            </div>
+        </div>
+        
+        <div class="status-bar">
+            <div class="status-left">💖 Made with love and lots of pink code</div>
+            <div class="status-right">Press Tab for suggestions ✨</div>
+        </div>
     </div>
 
-    <div class="terminal-body">
-      <div class="sparkles">
-        <span class="sparkle" style="top: 10%; left: 20%;">✨</span>
-        <span class="sparkle" style="top: 30%; left: 80%; animation-delay: 1s;">💖</span>
-        <span class="sparkle" style="top: 60%; left: 15%; animation-delay: 2s;">🎀</span>
-        <span class="sparkle" style="top: 80%; left: 70%; animation-delay: 3s;">✨</span>
-      </div>
-
-      <div class="terminal-content">
-        <div class="input-line">
-          <span class="prompt">pratbat@portfolio:~$</span>
-          <span class="command typing-animation">pratbat05</span>
-        </div>
-
-        <div class="output">
-          <div style="color: #e91e63; font-weight: 500; margin-bottom: 10px;">
-            ✨ Hey there! I'm Pratishtha -
-          </div>
-          <div style="color: #ad1457;">
-            Developer | Researcher | Innovator
-          </div>
-        </div>
-
-        <div id="help-menu" class="help-menu" style="display: none;">
-          <div class="help-title">
-            <span>🎀 Available Commands:</span>
-          </div>
-          <div class="output">
-            <div>• about - Learn more about me</div>
-            <div>• projects - View my projects</div>
-            <div>• skills - See my technical skills</div>
-            <div>• education - My educational background</div>
-            <div>• achievements - Awards and accomplishments</div>
-            <div>• contact - Get in touch with me</div>
-            <div>• clear - Clear the screen</div>
-          </div>
-        </div>
-
-        <!-- About -->
-        <div id="about" class="section" style="display: none;">
-          <h3>💁‍♀️ About Me</h3>
-          <p>I'm a creative technologist who loves blending code with curiosity. Whether it’s research, dev projects or quirky interfaces, I’m here to sparkle in pink and precision. 💖</p>
-        </div>
-
-        <!-- Projects -->
-        <div id="projects" class="section" style="display: none;">
-          <h3>🛠️ Projects</h3>
-          <ul>
-            <li><strong>PaperSpeaker:</strong> AI Paper Summarizer – <a href="https://github.com/pratbat05/PaperSpeaker" target="_blank">GitHub</a></li>
-            <li><strong>PinkBot:</strong> A terminal bot with style 💅</li>
-            <li><strong>VoiceNotes:</strong> Voice to markdown notebook</li>
-          </ul>
-        </div>
-
-        <!-- Skills -->
-        <div id="skills" class="section" style="display: none;">
-          <h3>🧠 Skills</h3>
-          <ul>
-            <li>Languages: Python, JavaScript, C++</li>
-            <li>Frameworks: React, Flask, Node.js</li>
-            <li>Tools: Git, Docker, TensorFlow</li>
-          </ul>
-        </div>
-
-        <!-- Education -->
-        <div id="education" class="section" style="display: none;">
-          <h3>🎓 Education</h3>
-          <p><strong>Bachelor of Technology</strong> - Major in Computer Science<br/>Graduation Year: 2025</p>
-        </div>
-
-        <!-- Achievements -->
-        <div id="achievements" class="section" style="display: none;">
-          <h3>🏆 Achievements</h3>
-          <ul>
-            <li>Winner - Smart India Hackathon</li>
-            <li>Research Paper published at IEEE</li>
-            <li>Top 10 - Women Who Code India Challenge</li>
-          </ul>
-        </div>
-
-        <!-- Contact -->
-        <div id="contact" class="section" style="display: none;">
-          <h3>📫 Contact Me</h3>
-          <p>Email: <a href="mailto:pratishtha@example.com">pratishtha@example.com</a></p>
-          <p>GitHub: <a href="https://github.com/pratbat05" target="_blank">github.com/pratbat05</a></p>
-          <p>LinkedIn: <a href="https://linkedin.com/in/pratishthabatra" target="_blank">linkedin.com/in/pratishthabatra</a></p>
-        </div>
-
-        <!-- Input -->
-        <div class="input-line" style="margin-top: 30px;">
-          <span class="prompt">girlie@portfolio:~$</span>
-          <input type="text" class="interactive-input" id="commandInput" placeholder="Type 'help' to get started... 💕">
-        </div>
-      </div>
-    </div>
-
-    <div class="status-bar">
-      <div class="status-left">💖 Made with love and lots of pink code</div>
-      <div class="status-right">Press Tab for suggestions ✨</div>
-    </div>
-  </div>
-
-  <script>
-    function showSection(sectionId) {
-      const sections = document.querySelectorAll('.section');
-      sections.forEach(section => section.style.display = 'none');
-      document.getElementById(sectionId).style.display = 'block';
-      document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
-    }
-
-    function clearSections() {
-      const sections = document.querySelectorAll('.section');
-      sections.forEach(section => section.style.display = 'none');
-    }
-
-    document.getElementById('commandInput').addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') {
-        const command = this.value.toLowerCase().trim();
-        this.value = '';
-
-        if (command === 'help') {
-          document.getElementById('help-menu').style.display = 'block';
-        } else {
-          document.getElementById('help-menu').style.display = 'none';
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).style.display = 'block';
+            
+            // Scroll to section
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
         }
-
-        if (command.includes('about')) {
-          showSection('about');
-        } else if (command.includes('project')) {
-          showSection('projects');
-        } else if (command.includes('skill')) {
-          showSection('skills');
-        } else if (command.includes('education')) {
-          showSection('education');
-        } else if (command.includes('achievement')) {
-          showSection('achievements');
-        } else if (command.includes('contact')) {
-          showSection('contact');
-        } else if (command === 'clear') {
-          clearSections();
-          document.getElementById('help-menu').style.display = 'none';
-        }
-      }
-    });
-  </script>
+        
+        // Command input handler
+        document.getElementById('commandInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const command = this.value.toLowerCase().trim();
+                
+                if (command.includes('about')) {
+                    showSection('about');
+                } else if (command.includes('project')) {
+                    showSection('projects');
+                } else if (command.includes('skill')) {
+                    showSection('skills');
+                } else if (command.includes('education')) {
+                    showSection('education');
+                } else if (command.includes('achievement')) {
+                    showSection('achievements');
+                } else if (command.includes('contact')) {
+                    showSection('contact');
+                } else if (command === 'clear') {
+                    // Hide all sections
+                    const sections = document.querySelectorAll('.section');
+                    sections.forEach(section => {
+                        section.style.display = 'none';
+                    });
+                } else if (command === 'help') {
+                    document.querySelector('.help-menu').style.display = 'block';
+                    document.querySelector('.help-menu').scrollIntoView({ behavior: 'smooth' });
+                }
+                
+                this.value = '';
+            }
+        });
+        
+        // Add some interactive sparkles
+        setInterval(() => {
+            const sparkle = document.createElement('div');
+            sparkle.innerHTML = ['✨', '💖', '🎀', '💫'][Math.floor(Math.random() * 4)];
+            sparkle.className = 'sparkle';
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.top = Math.random() * 100 + '%';
+            sparkle.style.animationDelay = '0s';
+            
+            document.querySelector('.sparkles').appendChild(sparkle);
+            
+            setTimeout(() => {
+                sparkle.remove();
+            }, 4000);
+        }, 3000);
+    </script>
 </body>
 </html>
+
