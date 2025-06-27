@@ -374,6 +374,7 @@
                             </div>
                         </div>
                     </div>
+                </div>
                 
                 <div id="skills" class="section" style="display: none;">
                     <div class="input-line">
@@ -403,7 +404,7 @@
                 
                 <div id="education" class="section" style="display: none;">
                     <div class="input-line">
-                        <span class="prompt">girlie@portfolio:~$</span>
+                        <span class="prompt">pratbat@portfolio:~$</span>
                         <span class="command">education</span>
                     </div>
                     <div class="output">
@@ -413,6 +414,8 @@
                             <div class="card-content">
                                 Indira Gandhi Delhi Technical University for Women| 2023-2027<br>
                                 GPA: 9.25/10 | Department Rank: 2
+                            </div>
+                        </div>
                         <div class="education-card">
                             <div class="card-title">Senior Secondary Education</div>
                             <div class="card-content">
@@ -421,6 +424,7 @@
                         </div>
                     </div>
                 </div>
+                
                 <div id="achievements" class="section" style="display: none;">
                     <div class="input-line">
                         <span class="prompt">pratbat@portfolio:~$</span>
@@ -445,7 +449,7 @@
                 
                 <div id="contact" class="section" style="display: none;">
                     <div class="input-line">
-                        <span class="prompt">girlie@portfolio:~$</span>
+                        <span class="prompt">pratbat@portfolio:~$</span>
                         <span class="command">contact</span>
                     </div>
                     <div class="output">
@@ -460,7 +464,7 @@
                 </div>
                 
                 <div class="input-line" style="margin-top: 30px;">
-                    <span class="prompt">girlie@portfolio:~$</span>
+                    <span class="prompt">pratbat@portfolio:~$</span>
                     <input type="text" class="interactive-input" id="commandInput" placeholder="Type 'help' to get started... 💕">
                 </div>
             </div>
@@ -471,19 +475,31 @@
             <div class="status-right">Press Tab for suggestions ✨</div>
         </div>
     </div>
+
     <script>
         function showSection(sectionId) {
-            // Hide all sections
-            const sections = document.querySelectorAll('.section');
+            // Hide all sections except help menu
+            const sections = document.querySelectorAll('#about, #projects, #skills, #education, #achievements, #contact');
             sections.forEach(section => {
                 section.style.display = 'none';
             });
             
             // Show selected section
-            document.getElementById(sectionId).style.display = 'block';
-            
-            // Scroll to section
-            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+            if (sectionId && document.getElementById(sectionId)) {
+                document.getElementById(sectionId).style.display = 'block';
+                
+                // Scroll to section
+                document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        
+        function showHelp() {
+            document.getElementById('help-menu').style.display = 'block';
+            document.getElementById('help-menu').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function hideHelp() {
+            document.getElementById('help-menu').style.display = 'none';
         }
         
         // Command input handler
@@ -491,27 +507,30 @@
             if (e.key === 'Enter') {
                 const command = this.value.toLowerCase().trim();
                 
-                if (command.includes('about')) {
+                if (command === 'help') {
+                    showHelp();
+                } else if (command === 'about') {
                     showSection('about');
-                } else if (command.includes('project')) {
+                } else if (command === 'projects' || command === 'project') {
                     showSection('projects');
-                } else if (command.includes('skill')) {
+                } else if (command === 'skills' || command === 'skill') {
                     showSection('skills');
-                } else if (command.includes('education')) {
+                } else if (command === 'education') {
                     showSection('education');
-                } else if (command.includes('achievement')) {
+                } else if (command === 'achievements' || command === 'achievement') {
                     showSection('achievements');
-                } else if (command.includes('contact')) {
+                } else if (command === 'contact') {
                     showSection('contact');
                 } else if (command === 'clear') {
-                    // Hide all sections
-                    const sections = document.querySelectorAll('.section');
-                    sections.forEach(section => {
+                    // Hide all sections including help
+                    const allSections = document.querySelectorAll('#about, #projects, #skills, #education, #achievements, #contact');
+                    allSections.forEach(section => {
                         section.style.display = 'none';
                     });
-                } else if (command === 'help') {
-                    document.querySelector('.help-menu').style.display = 'block';
-                    document.querySelector('.help-menu').scrollIntoView({ behavior: 'smooth' });
+                    hideHelp();
+                } else if (command !== '') {
+                    // Show help for unknown commands
+                    showHelp();
                 }
                 
                 this.value = '';
