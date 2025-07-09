@@ -330,6 +330,7 @@
                         <div style="margin: 5px 0;">• about - Learn more about me</div>
                         <div style="margin: 5px 0;">• projects - View my projects</div>
                         <div style="margin: 5px 0;">• skills - See my technical skills</div>
+                        <div style="margin: 5px 0;">• work experiende - See my experiences</div>
                         <div style="margin: 5px 0;">• education - My educational background</div>
                         <div style="margin: 5px 0;">• achievements - Awards and accomplishments</div>
                         <div style="margin: 5px 0;">• contact - Get in touch with me</div>
@@ -401,7 +402,32 @@
                         </div>
                     </div>
                 </div>
-                
+
+                <div id="work experience" class="section" style="display: none;">
+                    <div class="input-line">
+                        <span class="prompt">pratbat@portfolio:~$</span>
+                        <span class="command"></span>
+                    </div>
+                    <div class="output">
+                        <div class="section-title">My Work Experience</div>
+                        <div class="project-card">
+                            <div class="card-title">Research Intern | Ecole Centrale de Nantes</div>
+                            <div class="card-content"> <br>
+                                Developed comparison models using Python Libraries and equation solvers for fluid flows with tensor orientation dependencies.
+                                <br>
+                                Analyzing 12+ flow configurations and achieving 92% model validation accuracy using scientific computing libraries <br>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <div class="card-title">Sentiment Analysis of Developer Discussions</div>
+                            <div class="card-content">
+                                <br>
+                                Tech: Python, Scikit-learn, Pandas, Logistic Regression, SVM<br>
+                                <a href="https://github.com/pratbat05" style="color: #e91e63;">→ View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>                
                 <div id="education" class="section" style="display: none;">
                     <div class="input-line">
                         <span class="prompt">pratbat@portfolio:~$</span>
@@ -488,7 +514,7 @@
     <script>
         function showSection(sectionId) {
             // Hide all sections except help menu
-            const sections = document.querySelectorAll('#about, #projects, #skills, #education, #achievements, #contact');
+            const sections = document.querySelectorAll('#about, #projects, #work experience, #skills, #education, #achievements, #contact');
             sections.forEach(section => {
                 section.style.display = 'none';
             });
@@ -524,6 +550,8 @@
                     showSection('projects');
                 } else if (command === 'skills' || command === 'skill') {
                     showSection('skills');
+                } else if (command === 'work experience' || command === 'project') {
+                    showSection('work experience');
                 } else if (command === 'education') {
                     showSection('education');
                 } else if (command === 'achievements' || command === 'achievement') {
@@ -531,8 +559,9 @@
                 } else if (command === 'contact') {
                     showSection('contact');
                 } else if (command === 'clear') {
+    
                     // Hide all sections including help
-                    const allSections = document.querySelectorAll('#about, #projects, #skills, #education, #achievements, #contact');
+                    const allSections = document.querySelectorAll('#about, #projects, #work experience, #skills,  #education, #achievements, #contact');
                     allSections.forEach(section => {
                         section.style.display = 'none';
                     });
